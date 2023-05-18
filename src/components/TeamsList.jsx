@@ -71,14 +71,14 @@ export function TeamsList() {
 	const filterTeamsByScore = () => {
 		const newList = []
 
-		teams.forEach(team => {
+		TEAMS.forEach(team => {
 			let teamScore = 0 
 
 			team?.games?.forEach(game => {
 				teamScore += game.score
 			})
 
-			newList.push({ name: team.name, score: teamScore})
+			newList.push({ name: team.name, score: teamScore, players: team.players})
 		})
 
 		return newList
@@ -108,7 +108,7 @@ export function TeamsList() {
 
 	// Filtering teams that with at least 3 players
 	function teamsWithMoreThanThreePlayers() {
-		const newList = teams.filter(({ players }) => players.length >= 3)
+		const newList = teams.filter(({ players }) => players?.length >= 3)
 
 		setTeams(newList)
 	}
